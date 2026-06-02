@@ -2,6 +2,8 @@
 
 ## Tecnologias usadas:
 
+### llmfit
+
 ### qwen2.5:1.5b
 
 ### python
