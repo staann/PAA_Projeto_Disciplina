@@ -1,5 +1,4 @@
-# O projeto de disciplina é fazer um sistema onde o usuário faz uma pergunta em linguagem
-natural e o sistema responde dando a resposta formatada
+# O projeto de disciplina é fazer um sistema onde o usuário faz uma pergunta em linguagem natural e o sistema responde dando a resposta formatada
 
 ## Tecnologias usadas:
 
