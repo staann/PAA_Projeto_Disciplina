@@ -1,5 +1,5 @@
 # set the KAGGLE_API_TOKEN environment variable:
-#var = "export KAGGLE_API_TOKEN=KGAT_0d3267d470516e0229ccc69a426ef7e4"
+#var = "export KAGGLE_API_TOKEN="
 import os
 import shutil
 import kagglehub
