@@ -13,10 +13,10 @@ os.makedirs(diretorio_destino, exist_ok=True)
 api = os.getenv("KAGGLE_API_TOKEN")
 
 try:
-    print("Iniciando o download do dataset via kagglehub...")
+    print("iniciando o download do dataset via kagglehub...")
 
     path_cache = kagglehub.dataset_download("srikarmell/cmu-movie-summary-corpus")
-    print("Download concluído no cache:", path_cache)
+    print("dDownload concluido no cache:", path_cache)
 
     #mover os arquivos do cache para a sua pasta do projeto
     arquivos = os.listdir(path_cache)
