@@ -28,6 +28,16 @@ modelo = KeyedVectors.load_word2vec_format(
     "cinema_benchmark/modelos/modeloW2V.bin", binary=True
 )
 '''
+def importar_stopwords():
+
+    nltk.download('stopwords')
+
+    from nltk.corpus import stopwords
+
+    stop_words = list(set(stopwords.words('english')))
+
+    return stop_words
+
 
 import gensim.downloader as api
 
@@ -45,4 +55,4 @@ def carregar_modelo_word2vec():
     print("Modelo carregado com sucesso!")
     return modelo
 
-word2vec = carregar_modelo_word2vec()
+#word2vec = carregar_modelo_word2vec()
