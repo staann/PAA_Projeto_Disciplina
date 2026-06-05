@@ -8,3 +8,5 @@ pytest>=6.2.0
 black>=21.0
 flake8>=3.9.0
 kaggle
+nltk
+gemsin
