@@ -6,4 +6,6 @@
 
 ### qwen2.5:1.5b
 
+### paraphrase-multilingual-MiniLM-L12-v2
+
 ### python
