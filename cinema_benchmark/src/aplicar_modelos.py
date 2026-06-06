@@ -63,6 +63,6 @@ def salvar_matriz_word2vec(matriz, caminho_arquivo):
 
     print("matriz binaria salva")
 
-
-matriz_word2vec = processar_em_lote_word2vec(df_plot, word2vec,stopwords)
-salvar_matriz_word2vec(matriz_word2vec, caminho_data)
+if __name__ == "__main__":
+    matriz_word2vec = processar_em_lote_word2vec(df_plot, word2vec,stopwords)
+    salvar_matriz_word2vec(matriz_word2vec, caminho_data)
