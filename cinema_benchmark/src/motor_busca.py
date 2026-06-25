@@ -62,11 +62,25 @@ vetor_da_pergunta = processar_linha_word2vec(
 
 
 filmes_encontrados = buscar_cosseno_word2vec(
-    vetor_da_pergunta, matriz_w2v, df, top_n=3
+    vetor_da_pergunta, matriz_w2v, df, top_n=10
 )
 
+print("Resultado da busca por Cosseno:")
 print("\nFILMES ENCONTRADOS ")
 for i, filme in enumerate(filmes_encontrados):
     print(f"\n{i+1}º Lugar: {filme['titulo']}")
     print(f"Grau de Similaridade: {filme['score_cosseno']:.4f}")
     print(f"Trecho da Sinopse: {filme['sinopse'][:150]}...")
+
+print("\n-------------------------")
+print("\n[Mecanismo RAG] Enviando dados para a LLM local...")
+
+from llmformater import formatar_resposta_llm
+
+resposta_final = formatar_resposta_llm(pergunta=pergunta_usuario, filmes=filmes_encontrados,modelo='qwen2.5:1.5b')
+
+print("\n=============================================")
+print("===       RESPOSTA DO ASSISTENTE LLM      ===")
+print("=============================================")
+print(resposta_final)
+print("=============================================")
