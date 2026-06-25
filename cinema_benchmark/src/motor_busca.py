@@ -53,34 +53,36 @@ matriz_data_final = os.path.join(caminho_data, "embeddings_word2vec.npy")
 matriz_w2v = np.load(matriz_data_final)
 print("Matriz carregada com sucesso!")
 
-pergunta_usuario = input("\nDigite sua pergunta relacionada aos filmes: ")
+while True:
+
+    pergunta_usuario = input("\nDigite sua pergunta relacionada aos filmes: ")
 
 
-vetor_da_pergunta = processar_linha_word2vec(
-    pergunta_usuario, word2vec, stopwords
-)
+    vetor_da_pergunta = processar_linha_word2vec(
+        pergunta_usuario, word2vec, stopwords
+    )
 
 
-filmes_encontrados = buscar_cosseno_word2vec(
-    vetor_da_pergunta, matriz_w2v, df, top_n=10
-)
+    filmes_encontrados = buscar_cosseno_word2vec(
+        vetor_da_pergunta, matriz_w2v, df, top_n=10
+    )
 
-print("Resultado da busca por Cosseno:")
-print("\nFILMES ENCONTRADOS ")
-for i, filme in enumerate(filmes_encontrados):
-    print(f"\n{i+1}º Lugar: {filme['titulo']}")
-    print(f"Grau de Similaridade: {filme['score_cosseno']:.4f}")
-    print(f"Trecho da Sinopse: {filme['sinopse'][:150]}...")
+    print("Resultado da busca por Cosseno:")
+    print("\nFILMES ENCONTRADOS ")
+    for i, filme in enumerate(filmes_encontrados):
+        print(f"\n{i+1}º Lugar: {filme['titulo']}")
+        print(f"Grau de Similaridade: {filme['score_cosseno']:.4f}")
+        print(f"Trecho da Sinopse: {filme['sinopse'][:150]}...")
 
-print("\n-------------------------")
-print("\n[Mecanismo RAG] Enviando dados para a LLM local...")
+    print("\n-------------------------")
+    print("\n[Mecanismo RAG] Enviando dados para a LLM local...")
 
-from llmformater import formatar_resposta_llm
+    from llmformater import formatar_resposta_llm
 
-resposta_final = formatar_resposta_llm(pergunta=pergunta_usuario, filmes=filmes_encontrados,modelo='qwen2.5:1.5b')
+    resposta_final = formatar_resposta_llm(pergunta=pergunta_usuario, filmes=filmes_encontrados,modelo='qwen2.5:1.5b')
 
-print("\n=============================================")
-print("===       RESPOSTA DO ASSISTENTE LLM      ===")
-print("=============================================")
-print(resposta_final)
-print("=============================================")
+    print("\n=============================================")
+    print("===       RESPOSTA DO ASSISTENTE LLM      ===")
+    print("=============================================")
+    print(resposta_final)
+    print("=============================================")
