@@ -1,5 +1,4 @@
 import types
-
 import numpy as np
 
 from packages.embedder_sentence import (
