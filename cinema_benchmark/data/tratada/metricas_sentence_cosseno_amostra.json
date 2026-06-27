@@ -1,0 +1,88 @@
+{
+  "pipeline": "sentence_cosseno",
+  "modelo_embedding": "all-MiniLM-L6-v2",
+  "dimensao": 384,
+  "metodo_busca": "cosseno_forca_bruta",
+  "n_documentos": 15000,
+  "pergunta": "a movie about space exploration and aliens",
+  "top_n": 10,
+  "resultados": [
+    {
+      "posicao": 1,
+      "id": 6804178,
+      "titulo": "Beasties",
+      "sinopse": "The film deals with a \"Bionaut\"  vessel having traveled back in time and releasing small reconnaissance creatures that become violent when they get too far away from the Bionaut. Describes the carnage as an extraterrestrial crafts lands on an area with many amorous teens.",
+      "score": 0.5647205114364624
+    },
+    {
+      "posicao": 2,
+      "id": 12575892,
+      "titulo": "The Day the World Ended",
+      "sinopse": "This film finds an alien, who is misunderstood, bent on hunting down and devouring people. A school psychologist, Dr. Jennifer Stillman  investigates the death of a student's mother and finds the boy  believes he is the son of the being. His earthling father  is also a doctor who has the boy in his care and holds that it is all in the boy's imagination.",
+      "score": 0.5624160766601562
+    },
+    {
+      "posicao": 3,
+      "id": 76356,
+      "titulo": "Sky High",
+      "sinopse": "The film tells the story of a government agent investigating the smuggling of Chinese aliens across the border in the Southwest United States.",
+      "score": 0.5511484146118164
+    },
+    {
+      "posicao": 4,
+      "id": 2730274,
+      "titulo": "Creature",
+      "sinopse": "A team of astronauts encounter a vicious alien creature that has the ability to manipulate its victims after death on the isolated Titan lunar base. Klaus Kinski makes an appearance about thirty minutes into the film. This film is one of the more famous 1980s science fiction films that derives heavy influence from Ridley Scott's and 20th Century Fox's film Alien.",
+      "score": 0.5332211852073669
+    },
+    {
+      "posicao": 5,
+      "id": 34263327,
+      "titulo": "U.F.O.",
+      "sinopse": "The film is about five friends who wake up one morning to find that there is no power, cell phones or radio. The group wanders in the darkness for two days when they see a city-sized UFO above the city.{{Cite web}}",
+      "score": 0.5235108137130737
+    },
+    {
+      "posicao": 6,
+      "id": 27602393,
+      "titulo": "Monsters",
+      "sinopse": "After a NASA deep-space probe crash lands in Mexico, alien life forms spread throughout the U.S.–Mexico border region, leading to the quarantine of the northern half of Mexico. Mexican and United States troops battle to contain the creatures, while a wall stretching along the American border ostensibly keeps the United States protected. The film begins with night vision footage of a U.S. Army patrol driving through a town in the middle of the night. An explosion flips one of the vehicles, and flashes of gunfire show U.S. soldiers firing at an enormous tentacled creature. The alien's features are similar to that of an octopus, yet it strides upon several hard, insect-like legs. In the background, a radio transmission from one of the soldiers obtains approval for a dangerously close air strike. Meanwhile, a civilian with the troops screams for help and attempts to drag the seemingly lifeless body of a woman off the road and away from the creature. The soldiers withdraw as the man is left behind, lifting the woman and trying to carry her away. Moments later, an air-to-ground missile homes in on the creature. The scene changes to Andrew Kaulder , a young American photojournalist, who is instructed by his wealthy employer to get the latter's daughter Samantha Wynden  back to the United States from San José, Central America. Andrew has no interest in being an escort but is pressured into doing so. He locates Samantha in a Mexican hospital. She is being treated for an injured wrist and seems at odds with her impending marriage to her fiancé. After leaving the hospital, the pair board a train to reach the Mexican coast, where they plan to take a ferry to the United States. However, the pair are temporarily slowed down by the destruction of the railroad. They learn that if they do not leave the country within a few days, sea and air travel will be blocked, and they will have to wait six months before safe travel is possible. With that deadline looming, Andrew makes the decision to walk the rest of the way to the Coast and Samantha reluctantly complies. After spending the night with a generous local family, the pair make their way to the eastern gulf coast of Mexico. Arriving at the port, they learn that the last ferry will leave the next morning at 7 o'clock. Andrew is forced to buy Samantha a single ticket costing an exorbitant price of $5,000, from a dishonest ticket agent. That night, they explore the town's night-life: drinking, eating and having a good time together, but upon returning to the hotel, it soon becomes obvious Samantha wants to go to bed alone. Andrew resumes drinking heavily throughout the night after she turns him away from her room. The next morning Samantha discovers Andrew in bed with a local girl he had picked up. Shocked, she leaves the room and Andrew follows, giving the girl the opportunity to steal their passports. This means that Samantha is not able to board the ferry. Given no other option to return home, Samantha returns to the agent and barters her engagement ring for $10,000 in exchange for an escort for Andrew and her through the infected zone. Their journey takes them across the Mexican quarantine zone. Initially they travel by riverboat, where they hear and partially see the alien creatures along the way. Eventually, they are dropped off and transferred to a group of armed escorts who are to lead them overland to the US-Mexico border. While they are traveling in a convoy, it is attacked by the large aliens. As the tentacled creatures begin to demolish the other vehicles in the convoy, the escorts guarding Andrew and Samantha abandon them to try and gun down the attacking aliens. The sounds of battle soon come to an end, and Andrew and Samantha are forced to hide in silence as the creatures surround and inspect the remaining vehicles. After Andrew shuts off the light in their van, the nearby aliens ignore them. They instead destroy the remaining truck that had its headlights still on, indicating that light is of importance in some way to the aliens. When morning comes, it is evident that none of the guards has survived the ordeal, their bloodied bodies strewn across the jungle. One of the corpses is that of a female child. On finding the girl he removes two camera lenses from his bag and then pulls out a coat from deeper in the bag which he uses to cover the girl and onto which he places a yellow flower picked from the jungle. He sorrowfully documents what he sees. There is nothing in this scene which shows him taking any photographs, thereby emphasizing how his view of the matter has changed since his earlier cynical comment that a photo of a dead girl would be worth $50,000. He gingerly salvages a pair of gas masks from two of the bodies before returning to Samantha. They make a day's worth of progress before they spend the night at the top of what appears to be an Aztec pyramid with the US border wall visible on the horizon. The next day, they arrive at the checkpoint nestled in a gap in the massive wall, but it appears to be unmanned. As they cross the abandoned checkpoint and explore a nearby suburban ghost town, Andrew and Samantha realize the American border has been evacuated and the aliens have advanced into the United States. After walking along an evacuation route, the two stumble across an abandoned gas station. Andrew calls the police and is informed they will be picked up. Andrew and Samantha phone their respective families. Andrew speaks with his son, becoming visibly emotional as he does so. As they finish their calls, a lone creature silently approaches the gas station from behind. Andrew fails to notice it as he lies on the concrete of the pumping station. It sends its tentacles into the store, setting off the typical door-chime. Samantha, thinking it is Andrew coming inside to join her, looks up smiling but quickly begins to scoot away across the floor, horrified. She hides behind a set of shelves as two tentacles explore the inside of the store, getting dangerously close to her several times. They soon turn their attention to a TV that is displaying the news, pressing the tips of the appendages against the screen as pulses of light run up their lengths. Realizing their attraction to the electrically-produced light, Samantha quickly unplugs the TV and the creature loses interest in the store. The creature strides to the road beside the gas station as Samantha leaves the store to join Andrew. They both watch in amazement as a second alien appears and begins communicating with the first. Their communication appears to be more than simply vocal, as their tentacles interlace and pulse with light rhythmically. In this rare spectacle, the giant creatures no longer seem monstrous killers, but instead appear as gentle giants sharing a tender, beautiful moment. However, as quickly as they came, the creatures part ways, leaving Samantha and Andrew alone together as they wait for the military to arrive. As the convoy approaches the gas station, one of the soldiers hums Wagner's \"Ride of the Valkyries\", implying that the opening scene of the film has already shown what will happen to Andrew and Samantha after they are picked up. Watching the creatures vanish into the night, Samantha tearfully declares, \"I don't want to go home\" and they share a brief kiss before they are interrupted by the military rescue convoy.",
+      "score": 0.506984293460846
+    },
+    {
+      "posicao": 7,
+      "id": 26213151,
+      "titulo": "Remote Control",
+      "sinopse": "A video store clerk stumbles onto an alien plot to take over earth by brainwashing people with a bad '50s science fiction movie. He and his friends race to stop the aliens before the tapes can be distributed world-wide.",
+      "score": 0.5069280862808228
+    },
+    {
+      "posicao": 8,
+      "id": 30813829,
+      "titulo": "Tabbaliyu Neenade Magane",
+      "sinopse": "The movie explores the cultural problems experienced by an American woman, newly married to an Indian, adjusting to Indian norms and customs. It depicts a modern man who studies agriculture in the United states, returns to India with an American wife with their different views. The theme is one alienation from the fellow human beings.",
+      "score": 0.4970954656600952
+    },
+    {
+      "posicao": 9,
+      "id": 24979853,
+      "titulo": "Feeders",
+      "sinopse": "The movie follows two friends as they attempt to stop an invasion from taking over Alabama and the world by biting rednecks.",
+      "score": 0.49454230070114136
+    },
+    {
+      "posicao": 10,
+      "id": 21237721,
+      "titulo": "Invasion of the Pod People",
+      "sinopse": "The film is about Melissa , a young woman living in Los Angeles, who works for a large corporation. One night, there is a freak meteor shower. The next morning, Melissa goes about her day but as time passes, slowly becomes aware that those around her have changed since the meteorites fell. It's as if their minds are no longer their own. For example, Melissa's supervisor Samantha seduces her into a passionate lesbian encounter, even though Samantha had never shown any signs of being a lesbian. Melissa soon realizes that the townsfolk have been replaced by a race of aliens known as Pod People. The aliens grow in large seed pods and gradually take the form of a particular person, eventually taking over their bodies once the growth process is complete. The Pod People try to take control of Melissa, but she flee the town to warn humanity of the in progress invasion.",
+      "score": 0.4910425543785095
+    }
+  ],
+  "tempos_segundos": {
+    "carregar_modelo": 8.758110770000712,
+    "encode_corpus": 58.46452652000153,
+    "encode_query": 0.05990647999897192,
+    "busca": 0.013831981999828713,
+    "inferencia_total": 0.07373846199880063
+  }
+}
