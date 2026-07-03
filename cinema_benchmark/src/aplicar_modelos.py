@@ -1,18 +1,23 @@
 from modelos_embeddings import *
 import pandas as pd
 import os
+import numpy as np
 
-caminho_data = "cinema_benchmark/data/tratada"
-caminho_data_final = os.path.join(caminho_data, "filmes_processados.csv")
+# 1. Definimos o diretório atual de forma dinâmica
+diretorio_atual = os.path.dirname(os.path.abspath(__file__))
 
+# 2. Definimos a pasta onde os dados ficam (para usar no final do arquivo)
+caminho_data = os.path.join(diretorio_atual, '..', 'data', 'tratada')
+
+# 3. Lemos o CSV
+caminho_data_final = os.path.join(caminho_data, 'filmes_processados.csv')
 df = pd.read_csv(caminho_data_final)
+
+# 4. Declaramos o df_plot que a última linha precisa!
 df_plot = df['plot']
-#print(df['title'].head(5))
 
 stopwords = importar_stopwords()
 word2vec = carregar_modelo_word2vec()
-
-import numpy as np
 
 
 def processar_linha_word2vec(texto,modelo_w2v,stopwords):
