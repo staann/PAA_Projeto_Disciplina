@@ -1,9 +1,15 @@
 import os
 import pandas as pd
-from sentence_transformers import SentenceTransformer
-import faiss
 
 def construir_e_salvar_indice_hnsw():
+    try:
+        from sentence_transformers import SentenceTransformer
+        import faiss
+    except ImportError as exc:
+        raise ImportError(
+            "As dependências `sentence-transformers` e `faiss-cpu` são necessárias para o pipeline HNSW."
+        ) from exc
+
     print("Carregando o modelo SentenceTransformer...")
     modelo = SentenceTransformer('all-MiniLM-L6-v2')
 

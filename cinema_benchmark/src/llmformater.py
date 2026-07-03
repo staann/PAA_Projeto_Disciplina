@@ -1,5 +1,3 @@
-import ollama
-
 def montar_prompt(pergunta,filmes):
 
     contexto_filmes = ""
@@ -32,6 +30,8 @@ def formatar_resposta_llm(pergunta,filmes,modelo='qwen2.5:1.5b'):
     prompt = montar_prompt(pergunta,filmes)
 
     try:
+        import ollama
+
         resposta = ollama.chat(model=modelo, messages=[{"role": "user", "content": prompt}])
 
         return resposta["message"]["content"]

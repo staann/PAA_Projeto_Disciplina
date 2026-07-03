@@ -1,5 +1,6 @@
+import functools
+
 import nltk
-#import gensim
 '''
 nltk.download('stopwords')
 
@@ -29,7 +30,6 @@ modelo = KeyedVectors.load_word2vec_format(
 )
 '''
 def importar_stopwords():
-
     nltk.download('stopwords')
 
     from nltk.corpus import stopwords
@@ -39,9 +39,7 @@ def importar_stopwords():
     return stop_words
 
 
-import gensim.downloader as api
-
-
+@functools.lru_cache(maxsize=1)
 def carregar_modelo_word2vec():
     """Baixa (se não estiver no PC) e carrega o Word2Vec do Google News de 300 dimensões."""
     print("Carregando o modelo Word2Vec (Google News 300)...")
@@ -49,7 +47,13 @@ def carregar_modelo_word2vec():
         "Nota: Se for a primeira vez, o Gensim fará o download de ~1.6GB automaticamente."
     )
 
-    # O nome oficial do modelo no repositório do Gensim é exatamente este:
+    try:
+        import gensim.downloader as api
+    except ImportError as exc:
+        raise ImportError(
+            "gensim é necessário para carregar o modelo Word2Vec. Instale as dependências do projeto."
+        ) from exc
+
     modelo = api.load("word2vec-google-news-300")
 
     print("Modelo carregado com sucesso!")

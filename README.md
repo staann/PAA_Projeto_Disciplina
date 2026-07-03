@@ -1,128 +1,155 @@
-# Cinema Benchmark - Sistema de Busca de Filmes
+﻿# Cinema Benchmark
 
-Projeto de disciplina para busca de filmes em linguagem natural com base em similaridade de cosseno entre embeddings Word2Vec.
+Sistema de busca semântica para filmes usando o **CMU Movie Summary Corpus**.
+O projeto atende ao trabalho de disciplina de *Projeto e Análise de Algoritmos* e compara abordagens de busca para responder perguntas em linguagem natural.
 
-## Visão geral
+## Objetivo
 
-O usuário digita uma pergunta sobre filmes, o sistema processa o texto e retorna os filmes mais similares usando os dados do corpus `CMU Movie Summary Corpus`.
+Dada uma pergunta sobre filmes, o sistema busca sinopses parecidas e monta uma resposta final com apoio de um LLM local via `Ollama`.
 
-## Tecnologias usadas
+## Modelos implementados
 
-- `Python`
-- `NumPy`
-- `pandas`
-- `scikit-learn`
-- `NLTK`
-- `Kaggle Hub`
+- **Word2Vec Average + Cosseno**: representa cada sinopse pela média dos vetores das palavras e faz busca por similaridade de cosseno.
+- **Sentence Embeddings + Cosseno**: gera embeddings de sentenças com `SentenceTransformer` e faz busca por cosseno.
+- **Sentence Embeddings + HNSW**: usa `SentenceTransformer` + `FAISS HNSW` para acelerar a busca aproximada.
+- **Resposta final com LLM local**: formata a resposta usando `Ollama`.
 
-## Estrutura do projeto
+## Estrutura principal
 
 ```text
 cinema_benchmark/
 ├── data/
 │   ├── cmu-movie-summary-corpus/
 │   └── tratada/
-├── modelos/
-└── src/
-    ├── download_data.py
-    ├── tratar_data.py
-    ├── salvar_data_tratada.py
-    ├── aplicar_modelos.py
-    ├── modelos_embeddings.py
-    ├── motor_busca.py
-    └── verificar_caminho.py
+├── src/
+│   ├── aplicar_modelos.py
+│   ├── download_data.py
+│   ├── llmformater.py
+│   ├── modelos_embeddings.py
+│   ├── motor_busca.py
+│   ├── salvar_data_tratada.py
+│   ├── tratar_data.py
+│   ├── sentence_cosseno/
+│   └── sentence_hnsw/
+└── tests/
 ```
 
-## Pré-requisitos
+## Requisitos
 
-- `Python 3.7` ou superior
-- Conexão com a internet para baixar o dataset
-- Conta no Kaggle com acesso à API
+- `Python 3.11+` recomendado
+- `pip`
+- Conexão com a internet para baixar o corpus e os modelos na primeira execução
+- `Ollama` instalado localmente, se você quiser gerar a resposta final com LLM
 
 ## Instalação
 
-1. Crie e ative um ambiente virtual, se desejar:
+Crie e ative um ambiente virtual:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-2. Instale as dependências:
+Instale as dependências:
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-3. Configure o Kaggle API Token:
-
-   - Baixe o arquivo `kaggle.json` na sua conta Kaggle
-   - Coloque o arquivo em `C:\Users\<seu_usuario>\.kaggle\kaggle.json`
-   - Ou defina a variável de ambiente `KAGGLE_API_TOKEN`
-
-## Como executar
-
-### 1. Baixar os dados
-
-Execute o script de download dentro da pasta `src`:
+Se o `NLTK` pedir dados adicionais, baixe o pacote de stopwords na primeira execução ou rode:
 
 ```powershell
-cd cinema_benchmark\src
-python download_data.py
+python -c "import nltk; nltk.download('stopwords')"
 ```
 
-Esse passo baixa o corpus para `cinema_benchmark/data/cmu-movie-summary-corpus/`.
+## Preparação dos dados
 
-### 2. Processar os dados
-
-Depois, rode o pipeline de tratamento:
+1. Baixar o corpus do CMU Movie Summary Corpus:
 
 ```powershell
-python salvar_data_tratada.py
+python cinema_benchmark\src\download_data.py
 ```
 
-Esse script gera os arquivos processados em `cinema_benchmark/data/tratada/`, incluindo:
-
-- `filmes_processados.csv`
-- `embeddings_word2vec.npy`
-
-### 3. Fazer buscas
-
-Execute o motor de busca interativo:
+2. Processar e salvar os dados tratados:
 
 ```powershell
-python motor_busca.py
+python cinema_benchmark\src\salvar_data_tratada.py
 ```
 
-Digite uma pergunta relacionada a filmes e o sistema exibirá os 3 resultados mais similares com título, score e trecho da sinopse.
+Isso gera `cinema_benchmark/data/tratada/filmes_processados.csv`.
 
-## Exemplo de uso
+## Como executar cada modelo
 
-```text
-Digite sua pergunta relacionada aos filmes: filmes de aventura e exploração
+### 1) Word2Vec Average + Cosseno
 
-FILMES ENCONTRADOS
+Gerar a matriz de embeddings Word2Vec:
 
-1º Lugar: ...
-Grau de Similaridade: 0.8234
-Trecho da Sinopse: ...
+```powershell
+python cinema_benchmark\src\aplicar_modelos.py
 ```
+
+Executar a busca interativa:
+
+```powershell
+python cinema_benchmark\src\motor_busca.py
+```
+
+No menu, escolha `1`.
+
+### 2) Sentence Embeddings + Cosseno
+
+Executar o pipeline completo com uma pergunta de exemplo:
+
+```powershell
+python cinema_benchmark\src\sentence_cosseno\pipeline_sentence_cosseno.py "a movie about adventure and exploration"
+```
+
+Esse pipeline constrói o índice, faz a busca e salva métricas.
+
+### 3) Sentence Embeddings + HNSW
+
+Gerar o índice HNSW:
+
+```powershell
+python cinema_benchmark\src\sentence_hnsw\pipeline_hnsw.py
+```
+
+Depois usar o menu principal:
+
+```powershell
+python cinema_benchmark\src\motor_busca.py
+```
+
+No menu, escolha `2`.
+
+## LLM local
+
+O arquivo `cinema_benchmark/src/llmformater.py` usa `Ollama` para formatar a resposta.
+
+Exemplo de uso:
+
+```powershell
+ollama run qwen2.5:1.5b
+```
+
+Se preferir outro modelo local, ajuste o nome no código ou passe outro valor no parâmetro `modelo`.
+
+## Testes
+
+Executar a suíte de testes:
+
+```powershell
+python -m pytest -q
+```
+
+Se o `pytest` não estiver instalado, reinstale as dependências com `pip install -r requirements.txt`.
 
 ## Observações
 
-- O projeto já está implementado até a etapa de busca por similaridade
-- A qualidade dos resultados depende dos dados processados e dos embeddings gerados
-- Se algum arquivo de entrada não existir, verifique se os passos anteriores foram executados corretamente
+- Os modelos `SentenceTransformer` e `FAISS` podem demorar na primeira execução por causa do download.
+- O `Word2Vec` do Gensim também pode baixar um modelo grande na primeira vez.
+- O arquivo `motor_busca.py` integra a busca e a resposta final com LLM local.
 
-## Scripts principais
+## Licença
 
-- `download_data.py`: baixa o dataset original
-- `salvar_data_tratada.py`: executa o processamento e salva os dados tratados
-- `motor_busca.py`: realiza a busca interativa por similaridade
-
-## Próximos passos
-
-Possíveis melhorias futuras:
-
-- ajustar o pré-processamento dos textos
-- salvar e reutilizar o modelo de embeddings treinado
+Uso acadêmico para fins de disciplina.

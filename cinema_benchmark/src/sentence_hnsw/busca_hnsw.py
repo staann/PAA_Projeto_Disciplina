@@ -7,12 +7,15 @@ def realizar_busca_hnsw(pergunta, modelo, indice_hnsw, df_filmes, top_n=3):
     distancias, indices = indice_hnsw.search(vetor_pergunta, top_n)
     
     resultados = []
-    for idx, dist in zip(indices[0], distancias[0]):
+    for posicao, (idx, dist) in enumerate(zip(indices[0], distancias[0]), start=1):
         linha_filme = df_filmes.iloc[idx]
+        identificador = int(linha_filme["id"]) if "id" in df_filmes.columns else int(idx)
         dados_filme = {
+            "posicao": posicao,
+            "id": identificador,
             "titulo": linha_filme["title"],
             "sinopse": linha_filme["plot"],
-            "score": dist, # Menor = mais similar
+            "score": float(dist), # Menor = mais similar
         }
         resultados.append(dados_filme)
         
