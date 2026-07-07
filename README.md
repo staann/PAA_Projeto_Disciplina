@@ -18,6 +18,7 @@ Dada uma pergunta sobre filmes, o sistema busca sinopses parecidas e monta uma r
 
 ```text
 cinema_benchmark/
+├── app.py                # Interface web (Streamlit)
 ├── data/
 │   ├── cmu-movie-summary-corpus/
 │   └── tratada/
@@ -29,6 +30,7 @@ cinema_benchmark/
 │   ├── motor_busca.py
 │   ├── salvar_data_tratada.py
 │   ├── tratar_data.py
+│   ├── frontend/         # Camada de serviço do Streamlit
 │   ├── sentence_cosseno/
 │   └── sentence_hnsw/
 └── tests/
@@ -122,17 +124,78 @@ python cinema_benchmark\src\motor_busca.py
 
 No menu, escolha `2`.
 
+## Interface web (Streamlit)
+
+Alternativa gráfica ao menu de terminal. Permite escolher o **embedding**, a **técnica de busca** e o **top-k** (padrão 5), digitar um prompt em inglês e ver o filme mais similar, a lista ranqueada e uma resposta opcional via LLM.
+
+Instale a dependência (já inclusa se você rodou `pip install -r requirements.txt streamlit`):
+
+```bash
+pip install streamlit
+```
+
+Execute o app a partir da raiz do projeto:
+
+```bash
+streamlit run cinema_benchmark/app.py
+```
+
+Depois abra `http://localhost:8501` no navegador.
+
+> **Importante:** para usar a resposta final via LLM na interface, o `Ollama` precisa estar **rodando** e com o modelo **já baixado** (veja a seção [LLM local](#llm-local)). Sem isso, a busca funciona normalmente, mas a resposta em texto ficará indisponível.
+
+Notas:
+
+- **Word2Vec + Cosseno** e **SentenceTransformer + HNSW** usam o corpus completo (42204 filmes).
+- **SentenceTransformer + Cosseno** gera os embeddings de todo o corpus na 1ª busca (~1min) e salva em `data/tratada/embeddings_sentence.npy` para as próximas.
+- A combinação **Word2Vec + HNSW** não existe (sem índice) e fica indisponível na interface.
+- A resposta em texto via LLM é opcional e requer o `Ollama` rodando com o modelo baixado.
+
 ## LLM local
 
-O arquivo `cinema_benchmark/src/llmformater.py` usa `Ollama` para formatar a resposta.
+O arquivo `cinema_benchmark/src/llmformater.py` usa `Ollama` para formatar a resposta final. O modelo padrão é `qwen2.5:1.5b`.
 
-Exemplo de uso:
+Para que a resposta em texto funcione (tanto no terminal quanto na interface Streamlit), o `Ollama` precisa estar **rodando** e o modelo precisa ter sido **baixado** previamente.
 
-```powershell
+### 1) Verifique se o Ollama está instalado
+
+```bash
+ollama --version
+```
+
+Se não estiver instalado, baixe em https://ollama.com/download.
+
+### 2) Deixe o serviço do Ollama rodando
+
+Em geral o Ollama já inicia como serviço em segundo plano após a instalação. Se precisar iniciar manualmente:
+
+```bash
+ollama serve
+```
+
+Deixe esse terminal aberto (ou garanta que o serviço esteja ativo) enquanto usa o projeto.
+
+### 3) Baixe o modelo com `ollama pull`
+
+O comando `ollama pull` baixa o modelo para a máquina local (só é necessário uma vez):
+
+```bash
+ollama pull qwen2.5:1.5b
+```
+
+Você pode conferir os modelos já baixados com:
+
+```bash
+ollama list
+```
+
+### 4) (Opcional) Testar o modelo manualmente
+
+```bash
 ollama run qwen2.5:1.5b
 ```
 
-Se preferir outro modelo local, ajuste o nome no código ou passe outro valor no parâmetro `modelo`.
+Se preferir outro modelo local, baixe-o com `ollama pull <nome-do-modelo>`, ajuste o nome no código ou passe outro valor no parâmetro `modelo` de `formatar_resposta_llm`.
 
 ## Testes
 
