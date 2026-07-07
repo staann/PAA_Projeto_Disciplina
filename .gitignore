@@ -16,3 +16,9 @@ htmlcov/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Frontend
+streamlit
+
+# temporary files
+temp/

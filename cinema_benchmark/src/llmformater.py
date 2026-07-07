@@ -1,24 +1,28 @@
-def montar_prompt(pergunta,filmes):
+def montar_prompt(pergunta, filmes):
 
     contexto_filmes = ""
 
-    for i,filmes in enumerate(filmes):
-        contexto_filmes += f"\n--- MOVIE {i+1} ---"
-        contexto_filmes += f"\nTitle: {filmes['titulo']}"
-        contexto_filmes += f"\nSynopsis: {filmes['sinopse']}"
+    for i, filme in enumerate(filmes):
+        rotulo = " (BEST MATCH)" if i == 0 else ""
+        contexto_filmes += f"\n--- MOVIE {i+1}{rotulo} ---"
+        contexto_filmes += f"\nTitle: {filme['titulo']}"
+        contexto_filmes += f"\nSynopsis: {filme['sinopse']}"
 
-    prompt = f"""You are a movie expert assistant. Your task is to answer the user's question based ESTRICLY on the movie context provided below.
+    titulo_top = filmes[0]["titulo"] if filmes else ""
 
-        MOVIE CONTEXT:
+    prompt = f"""You are a movie recommendation assistant. The list below contains movies already retrieved from the database and RANKED by semantic similarity to what the user is looking for. MOVIE 1 is the top match.
+
+        RETRIEVED MOVIES (ranked, most similar first):
         {contexto_filmes}
 
-        USER QUESTION: 
+        USER IS LOOKING FOR:
         "{pergunta}"
 
         RULES:
-        1. Provide a direct, clear, and well-formatted answer to the user's question using the context.
-        2. Do not provide any conversational filler or explanations outside of the answer.
-        3. If the answer cannot be determined or deduced from the provided movie context, reply EXACTLY with: "Not enough information in the database to determine the answer."
+        1. Recommend the best matching movie from the list above. The top match is "{titulo_top}" (MOVIE 1); prefer it unless another listed movie is a clearly stronger fit for the description.
+        2. Start your answer by naming the recommended movie, then briefly justify it in 1-2 sentences using ONLY its synopsis.
+        3. Base your answer STRICTLY on the movies provided. Do not invent movies or facts.
+        4. Do not add conversational filler. Never reply that there is "not enough information": always recommend the most relevant movie from the ranked list.
 
         ANSWER:"""
 
